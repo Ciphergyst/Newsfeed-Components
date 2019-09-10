@@ -1,5 +1,7 @@
 /* This is the data we will be using to create our article components */
 /* Look over this data, then proceed to line 91*/
+{ "esversion": 6}
+
 const data = [
   {
     title: 'Lambda School Students: "We\'re the best!"',
@@ -112,15 +114,39 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
-function createNewsFeed(title, date, firstParagraph, secondParagraph, thirdParagraph) {
-  const feedTitle = document.createElement("title"); 
-  feedTitle.textContent = title;
-  const headerDate = document.createElement("date");
-  headerDate.textContent = date;
-  const firstP = document.createElement('firstParagraph');
-  firstP.textContent = firstParagraph;
-  const secondP = document.createElement('secondparagraph');
-  secondP.textContent = secondParagraph;
-  const thirdP = document.createElement('thirdParagraph');
-  thirdP.textContent = thirdParagraph;
+function createNewsFeed(feedInfo) {
+
+// create news feed elements
+const articleHeader = document.createElement('div');
+articleHeader.classList.add('article')
+
+const articleTitle = document.createElement('h2')
+articleHeader.textContent = feedInfo.title;
+
+const articleDate = document.createElement('p')
+articleDate.classList.add('date')
+articleDate.textContent = feedInfo.date;
+
+const spanClass = document.createElement('span')
+spanClass.classList.add('expandButton')
+spanClass.textContent = 'Read More'
+spanClass.addEventListener('click', event => {
+  event.preventDefault();
+  div.classList.toggle('article-open')
+})
+
+
+
+const firstParagraph = document.createElement('p')
+const secondParagraph = document.createElement('p');
+const thirdParagraph = document.createElement('p');
+const expandButton = document.createElement('span');
+
+// create structure
+articleHeader.appendChild
+
+
+
 }
+
+  
