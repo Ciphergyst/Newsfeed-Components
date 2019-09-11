@@ -1,6 +1,6 @@
 /* This is the data we will be using to create our article components */
 /* Look over this data, then proceed to line 91*/
-{ "esversion": 6}
+
 
 const data = [
   {
@@ -87,7 +87,40 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'Getting Started with React',
+    date: 'Feb 3, 2019',
+    firstParagraph: `Hodor hodor HODOR! Hodor hodor - hodor, hodor. Hodor hodor... Hodor hodor hodor; hodor hodor. Hodor hodor hodor, hodor, hodor
+          hodor. Hodor, hodor. Hodor. Hodor, hodor - hodor... Hodor hodor hodor; hodor HODOR hodor, hodor hodor?! Hodor hodor, hodor.
+          Hodor hodor hodor hodor hodor! Hodor hodor - HODOR hodor, hodor hodor hodor hodor hodor; hodor hodor? `,
+
+    secondParagraph: `Hodor, hodor. Hodor. Hodor, hodor, hodor. Hodor hodor, hodor. Hodor hodor, hodor, hodor hodor. Hodor! Hodor hodor, hodor;
+          hodor hodor hodor? Hodor, hodor. Hodor. Hodor, hodor - HODOR hodor, hodor hodor hodor! Hodor, hodor. Hodor. Hodor, HODOR
+          hodor, hodor hodor, hodor, hodor hodor. Hodor hodor - hodor - hodor... Hodor hodor hodor hodor hodor hodor hodor?! Hodor
+          hodor - hodor hodor hodor. Hodor. Hodor hodor... Hodor hodor hodor hodor hodor? `,
+
+    thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
+          Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
+          Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'What skills do I need to succeed as a Python dev in 2019?',
+    date: 'March 9, 2019',
+    firstParagraph: `Hodor hodor HODOR! Hodor hodor - hodor, hodor. Hodor hodor... Hodor hodor hodor; hodor hodor. Hodor hodor hodor, hodor, hodor
+          hodor. Hodor, hodor. Hodor. Hodor, hodor - hodor... Hodor hodor hodor; hodor HODOR hodor, hodor hodor?! Hodor hodor, hodor.
+          Hodor hodor hodor hodor hodor! Hodor hodor - HODOR hodor, hodor hodor hodor hodor hodor; hodor hodor? `,
+
+    secondParagraph: `Hodor, hodor. Hodor. Hodor, hodor, hodor. Hodor hodor, hodor. Hodor hodor, hodor, hodor hodor. Hodor! Hodor hodor, hodor;
+          hodor hodor hodor? Hodor, hodor. Hodor. Hodor, hodor - HODOR hodor, hodor hodor hodor! Hodor, hodor. Hodor. Hodor, HODOR
+          hodor, hodor hodor, hodor, hodor hodor. Hodor hodor - hodor - hodor... Hodor hodor hodor hodor hodor hodor hodor?! Hodor
+          hodor - hodor hodor hodor. Hodor. Hodor hodor... Hodor hodor hodor hodor hodor? `,
+
+    thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
+          Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
+          Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
   }
+
 ];
 
 /* Step 1: Create a function that creates a component. You will want your component to look like the template below: 
@@ -114,39 +147,73 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
-function createNewsFeed(feedInfo) {
+function article(obj) {
+const div = document.createElement('div');
+const h2 = div.appendChild(document.createElement('h2'));
+const articleDate = div.appendChild(document.createElement('p'));
+const para1 = div.appendChild(document.createElement('p'));
+const para2 = div.appendChild(document.createElement('p'));
+const para3 = div.appendChild(document.createElement('p'));
+const span = div.appendChild(document.createElement('span'));
+span.addEventListener('click', e => {
+  if(div.classList.contains('article-open')) {
+    div.classList.remove('article-open');
+    span.textContent = "Read More";
+  }
+  else {
+    div.classList.add('article-open');
+    span.textContent = "Read Less";
+  }
+});
 
-// create news feed elements
-const articleHeader = document.createElement('div');
-articleHeader.classList.add('article')
+ div.classList.add('article');
+ h2.textContent = obj.title;
+ articleDate.classList.add('date');
+ articleDate.textContent = obj.date;
+ para1.textContent = obj.firstParagraph;
+ para2.textContent = obj.secondParagraph;
+ para3.textContent = obj.thirdParagraph;
 
-const articleTitle = document.createElement('h2')
-articleHeader.textContent = feedInfo.title;
+ span.classList.add('expandButton');
+ span.textContent = "Read More";
 
-const articleDate = document.createElement('p')
-articleDate.classList.add('date')
-articleDate.textContent = feedInfo.date;
+ const close = div.appendChild(document.createElement('span'));
+ close.textContent= '\u2191';
+ close.classList.add('closeButton');
+ close.addEventListener('click', (e) => {
+   div.classList.toggle('close-article');
+ });
+ 
 
-const spanClass = document.createElement('span')
-spanClass.classList.add('expandButton')
-spanClass.textContent = 'Read More'
-spanClass.addEventListener('click', event => {
-  event.preventDefault();
-  div.classList.toggle('article-open')
-})
+ return div;
+}
+const articles = document.querySelector(".articles");
+
+let newArticles = data.map(element => {
+ let feed = article(element);
+ return feed;
+});
+
+newArticles.forEach( component => {
+ articles.appendChild(component);
+});
 
 
+// const paragraph = [];
+//  for (let i = 0; i < 3; i++){
+//    paragraph.push(document.createElement('p'))
+//  }
+//  paragraph[0].textContent = feedInfo.firstParagraph
+//  paragraph[1].textContent = feedInfo.secondParagraph
+//  paragraph[2].textContent = feedInfo.secondParagraph
 
-const firstParagraph = document.createElement('p')
-const secondParagraph = document.createElement('p');
-const thirdParagraph = document.createElement('p');
-const expandButton = document.createElement('span');
+
 
 // create structure
-articleHeader.appendChild
 
 
 
-}
+
+
 
   

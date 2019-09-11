@@ -1,6 +1,7 @@
 /* This is the data we will be using, study it but don't change anything, yet. */
 
-let menuItems = [
+
+const menuItems = [
   'Students',
   'Faculty',
   "What's New",
@@ -8,6 +9,40 @@ let menuItems = [
   'Music',
   'Log Out'
 ];
+
+const headerH1 = document.querySelector('.header h1');
+const header = document.querySelector('.header');
+
+function menuCreator(arr) {
+  const menuButton = document.querySelector('.menu-button');
+  const menuDiv = document.createElement('div');
+  const ul = menuDiv.appendChild(document.createElement('ul'));
+  
+  
+  arr.forEach( element => {
+    const navLi = document.createElement('li');
+    const newNav = document.createElement('a');
+    newNav.setAttribute('href', '#');
+    newNav.textContent = element;
+    navLi.appendChild(newNav);
+    ul.appendChild(navLi);
+
+  });
+  menuDiv.classList.add("menu");
+
+
+  menuButton.addEventListener ('click', e => {
+    e.stopPropagation();
+    menuDiv.classList.toggle("menu--open");
+  }, false);
+  
+
+  return menuDiv;
+}
+
+header.insertBefore(menuCreator(menuItems), headerH1); 
+ 
+
 
 /* 
 
